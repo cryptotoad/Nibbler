@@ -3,21 +3,45 @@ Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form Form1 
    Caption         =   "Nibbler 0.2a"
-   ClientHeight    =   11490
+   ClientHeight    =   11445
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   11640
    LinkTopic       =   "Form1"
-   ScaleHeight     =   11490
+   ScaleHeight     =   11445
    ScaleWidth      =   11640
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command9 
+      Caption         =   "Clear"
+      Height          =   315
+      Left            =   240
+      TabIndex        =   33
+      Top             =   10440
+      Width           =   5415
+   End
+   Begin VB.CommandButton Command7 
+      Caption         =   "Disconnect"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   31
+      Top             =   1080
+      Width           =   3255
+   End
    Begin VB.Frame Frame2 
       Caption         =   "Data Monitor Lizard"
-      Height          =   6975
+      Height          =   7335
       Left            =   120
       TabIndex        =   25
-      Top             =   3960
+      Top             =   3600
       Width           =   11415
+      Begin VB.CommandButton Command8 
+         Caption         =   "Clear"
+         Height          =   315
+         Left            =   5760
+         TabIndex        =   32
+         Top             =   6840
+         Width           =   5415
+      End
       Begin RichTextLib.RichTextBox text1 
          Height          =   6135
          Left            =   120
@@ -27,7 +51,6 @@ Begin VB.Form Form1
          _ExtentX        =   9551
          _ExtentY        =   10821
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0000
       End
@@ -40,7 +63,6 @@ Begin VB.Form Form1
          _ExtentX        =   9551
          _ExtentY        =   10821
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0082
       End
@@ -107,10 +129,10 @@ Begin VB.Form Form1
       Width           =   735
    End
    Begin VB.TextBox tEncKey 
-      Height          =   1455
+      Height          =   1095
       Left            =   120
       TabIndex        =   9
-      Top             =   1440
+      Top             =   1800
       Width           =   3255
    End
    Begin VB.CommandButton Command5 
@@ -215,6 +237,7 @@ Begin VB.Form Form1
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0104
       End
@@ -227,6 +250,7 @@ Begin VB.Form Form1
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0186
       End
@@ -247,6 +271,14 @@ Begin VB.Form Form1
          Width           =   2415
       End
    End
+   Begin VB.Label Label10 
+      Caption         =   "XMPP: Cryptotoad@J3ws.biz"
+      Height          =   375
+      Left            =   8880
+      TabIndex        =   30
+      Top             =   11040
+      Width           =   2535
+   End
    Begin VB.Shape Shape1 
       BackColor       =   &H000000FF&
       BackStyle       =   1  'Opaque
@@ -261,7 +293,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   120
       TabIndex        =   10
-      Top             =   1200
+      Top             =   1560
       Width           =   3255
    End
    Begin VB.Label Label7 
@@ -356,6 +388,21 @@ Private Sub Command6_Click()
 End Sub
 
 
+Private Sub Command7_Click()
+    iSpeak.Close
+    iListen.Close
+    Shape1.BackColor = &HFF&
+    
+End Sub
+
+Private Sub Command8_Click()
+    text2.Text = ""
+End Sub
+
+Private Sub Command9_Click()
+    text1.Text = ""
+End Sub
+
 ''''''''''''''''''''''''''''''
 
 Private Sub Form_Load()
@@ -426,8 +473,11 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
     'text3.Text = Form2.text3.Text & vbNewLine & "[BOT] " & StrConv(botStream, vbFromUnicode)
     
     botStream = applyCrypto(botStream, 1)
-    
-    iSpeak.SendData (botStream)
+    If iSpeak.State = sckConnected Then
+        iSpeak.SendData (botStream)
+    Else
+        'hold the phone
+    End If
     
 End Sub
 
@@ -501,7 +551,12 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
     
     clientStream = applyCrypto(clientStream, 1) ' run encryption so we can pass the stream along as if it was never messed with :P
     
-    iListen.SendData (clientStream)
+    If iListen.State = sckConnected Then
+        iListen.SendData (clientStream)
+    Else
+        'Hold the phone
+    End If
+    
     
     
 End Sub
