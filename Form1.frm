@@ -1,15 +1,68 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form Form1 
-   Caption         =   "Nibbler"
-   ClientHeight    =   4170
+   Caption         =   "Nibbler 0.2a"
+   ClientHeight    =   11490
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   3450
+   ClientWidth     =   11640
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4170
-   ScaleWidth      =   3450
+   ScaleHeight     =   11490
+   ScaleWidth      =   11640
    StartUpPosition =   3  'Windows Default
+   Begin VB.Frame Frame2 
+      Caption         =   "Data Monitor Lizard"
+      Height          =   6975
+      Left            =   120
+      TabIndex        =   25
+      Top             =   3960
+      Width           =   11415
+      Begin RichTextLib.RichTextBox text1 
+         Height          =   6135
+         Left            =   120
+         TabIndex        =   26
+         Top             =   600
+         Width           =   5415
+         _ExtentX        =   9551
+         _ExtentY        =   10821
+         _Version        =   393217
+         Enabled         =   -1  'True
+         ScrollBars      =   2
+         TextRTF         =   $"Form1.frx":0000
+      End
+      Begin RichTextLib.RichTextBox text2 
+         Height          =   6135
+         Left            =   5760
+         TabIndex        =   27
+         Top             =   600
+         Width           =   5415
+         _ExtentX        =   9551
+         _ExtentY        =   10821
+         _Version        =   393217
+         Enabled         =   -1  'True
+         ScrollBars      =   2
+         TextRTF         =   $"Form1.frx":0082
+      End
+      Begin VB.Label Label9 
+         Alignment       =   2  'Center
+         Caption         =   "Unicode"
+         Height          =   255
+         Left            =   720
+         TabIndex        =   29
+         Top             =   360
+         Width           =   3615
+      End
+      Begin VB.Label Label8 
+         Alignment       =   2  'Center
+         Caption         =   "Hexadecimal"
+         Height          =   255
+         Left            =   6840
+         TabIndex        =   28
+         Top             =   360
+         Width           =   3615
+      End
+   End
    Begin VB.CheckBox Check1 
       Caption         =   "Key entered in hexadecimal"
       Height          =   255
@@ -29,6 +82,7 @@ Begin VB.Form Form1
    End
    Begin VB.OptionButton Option3 
       Caption         =   "XOR"
+      Enabled         =   0   'False
       Height          =   195
       Left            =   1800
       TabIndex        =   13
@@ -37,6 +91,7 @@ Begin VB.Form Form1
    End
    Begin VB.OptionButton Option2 
       Caption         =   "AES"
+      Enabled         =   0   'False
       Height          =   195
       Left            =   960
       TabIndex        =   12
@@ -52,10 +107,10 @@ Begin VB.Form Form1
       Width           =   735
    End
    Begin VB.TextBox tEncKey 
-      Height          =   975
+      Height          =   1455
       Left            =   120
       TabIndex        =   9
-      Top             =   1920
+      Top             =   1440
       Width           =   3255
    End
    Begin VB.CommandButton Command5 
@@ -75,8 +130,8 @@ Begin VB.Form Form1
       Width           =   1095
    End
    Begin MSWinsockLib.Winsock iSpeak 
-      Left            =   3480
-      Top             =   2760
+      Left            =   480
+      Top             =   3480
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -106,11 +161,91 @@ Begin VB.Form Form1
       Width           =   1215
    End
    Begin MSWinsockLib.Winsock iListen 
-      Left            =   3480
-      Top             =   3240
+      Left            =   0
+      Top             =   3480
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
+   End
+   Begin VB.Frame Frame1 
+      Caption         =   "Packet Forge"
+      Height          =   3615
+      Left            =   3600
+      TabIndex        =   16
+      Top             =   0
+      Width           =   7935
+      Begin VB.CommandButton Command6 
+         Caption         =   "Send to bot"
+         Height          =   375
+         Left            =   120
+         TabIndex        =   20
+         Top             =   2880
+         Width           =   3495
+      End
+      Begin VB.CommandButton Command2 
+         Caption         =   "Send to Server"
+         Height          =   375
+         Left            =   4200
+         TabIndex        =   19
+         Top             =   2880
+         Width           =   3495
+      End
+      Begin VB.CommandButton Command3 
+         Caption         =   "Text to Hex"
+         Height          =   255
+         Left            =   3360
+         TabIndex        =   18
+         Top             =   1560
+         Width           =   2055
+      End
+      Begin VB.CommandButton Command4 
+         Caption         =   "Hex to Text"
+         Height          =   255
+         Left            =   5640
+         TabIndex        =   17
+         Top             =   1560
+         Width           =   2055
+      End
+      Begin RichTextLib.RichTextBox asciibox 
+         Height          =   855
+         Left            =   120
+         TabIndex        =   21
+         Top             =   600
+         Width           =   7575
+         _ExtentX        =   13361
+         _ExtentY        =   1508
+         _Version        =   393217
+         ScrollBars      =   2
+         TextRTF         =   $"Form1.frx":0104
+      End
+      Begin RichTextLib.RichTextBox hexbox 
+         Height          =   855
+         Left            =   120
+         TabIndex        =   22
+         Top             =   1920
+         Width           =   7575
+         _ExtentX        =   13361
+         _ExtentY        =   1508
+         _Version        =   393217
+         ScrollBars      =   2
+         TextRTF         =   $"Form1.frx":0186
+      End
+      Begin VB.Label Label6 
+         Caption         =   "ASCII Rendering"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   24
+         Top             =   240
+         Width           =   2415
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Hex Rendering"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   23
+         Top             =   1560
+         Width           =   2415
+      End
    End
    Begin VB.Shape Shape1 
       BackColor       =   &H000000FF&
@@ -118,7 +253,7 @@ Begin VB.Form Form1
       FillColor       =   &H00FFFFFF&
       Height          =   255
       Left            =   120
-      Top             =   3840
+      Top             =   11040
       Width           =   255
    End
    Begin VB.Label Label4 
@@ -126,7 +261,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   120
       TabIndex        =   10
-      Top             =   1680
+      Top             =   1200
       Width           =   3255
    End
    Begin VB.Label Label7 
@@ -158,7 +293,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   600
       TabIndex        =   0
-      Top             =   3840
+      Top             =   11040
       Width           =   4095
    End
 End
@@ -177,25 +312,51 @@ Public outboundFilter As clsPacketFilter
 
 
 Private Sub Command1_Click()
-iSpeak.RemoteHost = txtIP.Text
-iSpeak.RemotePort = txtPort.Text
-iSpeak.Connect
+If iSpeak.State <> sckClosed Then
+    iSpeak.Close
+End If
+
+    iSpeak.RemoteHost = txtIP.Text
+    iSpeak.RemotePort = txtPort.Text
+    iSpeak.Connect
+
 End Sub
 
 
 Private Sub Command2_Click()
-    inboundFilter.isActive = False
-    outboundFilter.isActive = False
+    Form1.iSpeak.SendData HexToString(hexbox.Text)
+    text1.Text = text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
+    text2.Text = text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
 End Sub
 
 Private Sub Command5_Click()
 
-If iListen.State <> sckListening And iListen.State <> sckConnected Then
-iListen.LocalPort = txtLocal.Text
-iListen.Listen
-End If
+    If iListen.State <> sckListening And iListen.State <> sckConnected Then
+        iListen.LocalPort = txtLocal.Text
+        iListen.Listen
+    End If
 
 End Sub
+
+''''''''''''''''''''''''''''''
+
+
+Private Sub Command3_Click()
+    hexbox.Text = StringToHex(asciibox.Text)
+End Sub
+
+Private Sub Command4_Click()
+    asciibox.Text = HexToString(hexbox.Text)
+End Sub
+
+Private Sub Command6_Click()
+    Form1.iListen.SendData HexToString(hexbox.Text)
+    text1.Text = text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
+    text2.Text = text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
+End Sub
+
+
+''''''''''''''''''''''''''''''
 
 Private Sub Form_Load()
     'Set up packet filtering
@@ -239,9 +400,7 @@ Private Sub iListen_ConnectionRequest(ByVal requestID As Long)
     'MsgBox "Connection recieved!"
     'iListen.SendData "Hello?"
     
-    Form2.Show
-    Form2.Caption = "DataWatcher - " & iListen.RemoteHostIP
-    
+  
 
 End Sub
 
@@ -260,12 +419,11 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
     
     Debug.Print "Filtering data"
     
-    Form2.Show
-    Form2.text1.Text = Form2.text1.Text & vbNewLine & "[BOT] " & botStream
+    text1.Text = text1.Text & vbNewLine & "[BOT] " & botStream
 
-    Form2.text2.Text = Form2.text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
+    text2.Text = text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
     
-    Form2.text3.Text = Form2.text3.Text & vbNewLine & "[BOT] " & StrConv(botStream, vbFromUnicode)
+    'text3.Text = Form2.text3.Text & vbNewLine & "[BOT] " & StrConv(botStream, vbFromUnicode)
     
     botStream = applyCrypto(botStream, 1)
     
@@ -333,12 +491,11 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
     
     clientStream = inboundFilter.applyFilters(clientStream)
     
-    Form2.Show
-    Form2.text1.Text = Form2.text1.Text & vbNewLine & "[SERV] " & clientStream
+    text1.Text = text1.Text & vbNewLine & "[SERV] " & clientStream
     
-    Form2.text2.Text = Form2.text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
+    text2.Text = text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
     
-    Form2.text3.Text = Form2.text3.Text & vbNewLine & "[SERV] " & StrConv(clientStream, vbFromUnicode)
+    'Form2.text3.Text = Form2.text3.Text & vbNewLine & "[SERV] " & StrConv(clientStream, vbFromUnicode)
     
     Debug.Print clientStream
     

@@ -51,7 +51,6 @@ Begin VB.Form pForge
       _ExtentX        =   13361
       _ExtentY        =   4048
       _Version        =   393217
-      Enabled         =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"pForge.frx":0000
    End
@@ -64,7 +63,6 @@ Begin VB.Form pForge
       _ExtentX        =   13361
       _ExtentY        =   4260
       _Version        =   393217
-      Enabled         =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"pForge.frx":0082
    End
@@ -90,27 +88,3 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Command1_Click()
-    Form1.iListen.SendData HexToString(hexbox.Text)
-    Form2.text1.Text = Form2.text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
-    Form2.text2.Text = Form2.text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
-End Sub
-
-Private Sub Command2_Click()
-    Form1.iSpeak.SendData HexToString(hexbox.Text)
-    Form2.text1.Text = Form2.text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
-    Form2.text2.Text = Form2.text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
-End Sub
-
-Private Sub Command3_Click()
-    hexbox.Text = StringToHex(asciibox.Text)
-End Sub
-
-Private Sub Command4_Click()
-    asciibox.Text = HexToString(hexbox.Text)
-End Sub
-
-Private Sub Form_Load()
-'frmFilters.Show
-
-End Sub

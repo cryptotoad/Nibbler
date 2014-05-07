@@ -67,23 +67,9 @@ Begin VB.Form Form2
       Top             =   120
       Width           =   3615
    End
-   Begin VB.Label Label3 
-      Alignment       =   2  'Center
-      Caption         =   "ASCII"
-      Height          =   255
-      Left            =   5040
-      TabIndex        =   5
-      Top             =   120
-      Visible         =   0   'False
-      Width           =   3615
-   End
 End
 Attribute VB_Name = "Form2"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Form_Load()
-pForge.Show
-
-End Sub
