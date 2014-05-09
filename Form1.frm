@@ -11,6 +11,11 @@ Begin VB.Form Form1
    ScaleHeight     =   11445
    ScaleWidth      =   11640
    StartUpPosition =   3  'Windows Default
+   Begin VB.Timer Timer1 
+      Interval        =   250
+      Left            =   3480
+      Top             =   360
+   End
    Begin VB.CommandButton Command9 
       Caption         =   "Clear"
       Height          =   315
@@ -51,6 +56,7 @@ Begin VB.Form Form1
          _ExtentX        =   9551
          _ExtentY        =   10821
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0000
       End
@@ -63,6 +69,7 @@ Begin VB.Form Form1
          _ExtentX        =   9551
          _ExtentY        =   10821
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0082
       End
@@ -237,7 +244,6 @@ Begin VB.Form Form1
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0104
       End
@@ -250,7 +256,6 @@ Begin VB.Form Form1
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":0186
       End
@@ -341,6 +346,9 @@ Dim botStream2() As Byte
 Public isfirst As Boolean
 Public inboundFilter As clsPacketFilter
 Public outboundFilter As clsPacketFilter
+Public inboundPhone As youveGotMail
+Public outboundPhone As youveGotMail
+
 
 
 Private Sub Command1_Click()
@@ -406,6 +414,8 @@ End Sub
 ''''''''''''''''''''''''''''''
 
 Private Sub Form_Load()
+    
+Debug.Print vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine
     'Set up packet filtering
     Set outboundFilter = New clsPacketFilter
     
@@ -423,6 +433,13 @@ Private Sub Form_Load()
     inboundFilter.toFilter = "00"
     inboundFilter.isActive = False
 
+
+    'Filters done, let's set up hold the phone
+    Set inboundPhone = New youveGotMail
+    Set outboundPhone = New youveGotMail
+    inboundPhone.clearAll
+    outboundPhone.clearAll
+    
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -434,6 +451,39 @@ Private Sub iListen_Close()
 'MsgBox "Server seems to have crashed. Please restart Nibbler and the server."
     Shape1.BackColor = &HFF&
 
+End Sub
+
+Private Sub iListen_Connect()
+    
+    If iSpeak.State = sckConnected Then
+    
+        'MsgBox inboundPhone.getCount & "[IB]"
+        
+        While inboundPhone.getCount > 0
+            inboundPhone.popMessage
+            iListen.SendData inboundPhone.myData
+            Debug.Print "[HTP]" & inboundPhone.myData
+        Wend
+    Else
+        'Debug.Print "dafuq?"
+    End If
+
+End Sub
+
+Private Sub iSpeak_Connect()
+    
+    If iListen.State = sckConnected Then
+    
+        'MsgBox outboundPhone.getCount & "[OB]"
+        While outboundPhone.getCount > 0
+            outboundPhone.popMessage
+            iListen.SendData outboundPhone.myData
+            Debug.Print "[HTP] " & outboundPhone.myData
+        Wend
+    Else
+        'Debug.Print "dafuq?"
+    End If
+    
 End Sub
 
 Private Sub iListen_ConnectionRequest(ByVal requestID As Long)
@@ -464,11 +514,21 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
     
     botStream = outboundFilter.applyFilters(botStream)
     
-    Debug.Print "Filtering data"
+    'Debug.Print "Filtering data"
     
-    text1.Text = text1.Text & vbNewLine & "[BOT] " & botStream
+    If iSpeak.State = sckConnected Then
+    
+        text1.Text = text1.Text & vbNewLine & "[BOT] " & botStream
+    
+        text2.Text = text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
+    
+    Else
+    
+        text1.Text = text1.Text & vbNewLine & "[HOLD][BOT] " & botStream
+    
+        text2.Text = text2.Text & vbNewLine & "[HOLD][BOT] " & StringToHex(botStream)
 
-    text2.Text = text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
+    End If
     
     'text3.Text = Form2.text3.Text & vbNewLine & "[BOT] " & StrConv(botStream, vbFromUnicode)
     
@@ -477,15 +537,17 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
         iSpeak.SendData (botStream)
     Else
         'hold the phone
+        outboundPhone.myData = botStream
+        outboundPhone.pushMessage
     End If
     
 End Sub
 
 Public Function applyCrypto(packetStream As String, ident As Integer) As String
-    Debug.Print "Attempting to apply cryptographic stripping. " & ident
+    'Debug.Print "Attempting to apply cryptographic stripping. " & ident
     
     If tEncKey.Text = "" Or Option4.Value = True Then
-        Debug.Print "No cryptography enabled. Exiting crypto function."
+        'Debug.Print "No cryptography enabled. Exiting crypto function."
         applyCrypto = packetStream
         Exit Function
     End If
@@ -518,12 +580,10 @@ Public Function applyCrypto(packetStream As String, ident As Integer) As String
     
 End Function
 
+
+
 Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
 
-    If iListen.State <> sckConnected Then
-        'this is where we "hold the phone"
-        
-    End If
     
     iSpeak.GetData clientStream
     'iSpeak.GetData clientStream2
@@ -533,21 +593,31 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
         Exit Sub
     End If
     
-    Debug.Print "****" & clientStream
+    'Debug.Print "****" & clientStream
     
     clientStream = applyCrypto(clientStream, 0) ' run decryption
     
-    Debug.Print "****" & clientStream
+    'Debug.Print "****" & clientStream
     
     clientStream = inboundFilter.applyFilters(clientStream)
     
-    text1.Text = text1.Text & vbNewLine & "[SERV] " & clientStream
+    If iListen.State = sckConnected Then
     
-    text2.Text = text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
+        text1.Text = text1.Text & vbNewLine & "[SERV] " & clientStream
+        
+        text2.Text = text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
+    
+    Else
+    
+        text1.Text = text1.Text & vbNewLine & "[HOLD][SERV] " & clientStream
+        
+        text2.Text = text2.Text & vbNewLine & "[HOLD][SERV] " & StringToHex(clientStream)
+        
+    End If
     
     'Form2.text3.Text = Form2.text3.Text & vbNewLine & "[SERV] " & StrConv(clientStream, vbFromUnicode)
     
-    Debug.Print clientStream
+    'Debug.Print clientStream
     
     clientStream = applyCrypto(clientStream, 1) ' run encryption so we can pass the stream along as if it was never messed with :P
     
@@ -555,9 +625,20 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
         iListen.SendData (clientStream)
     Else
         'Hold the phone
+        inboundPhone.myData = clientStream
+        inboundPhone.pushMessage
     End If
     
     
     
 End Sub
 
+Private Sub Timer1_Timer()
+    If iSpeak.State = sckConnected And iListen.State = sckConnected Then
+        Shape1.BackColor = &HFF&
+    ElseIf iSpeak.State <> sckConnected And iListen.State <> sckConnected Then
+        Shape1.BackColor = &HFF&
+    Else
+        Shape1.BackColor = &HFFFF&
+    End If
+End Sub

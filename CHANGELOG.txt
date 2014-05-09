@@ -1,0 +1,16 @@
+0.3 (In progress)
+-More bug fixes (shouldn't be able to crash it 
+just by clicking buttons anymore)
+-Implemented Hold The Phone (VERY buggy)
+-Square in bottom left now shows yellow on a half connection
+0.2
+-GUI changed to one form instead of 3
+-Fixed some bugs that caused the client to crash when certian
+buttons were clicked while not connected
+-Added disconnect button
+-Improved error handling on socket close
+0.1
+-Implemented basic tunneling
+-Implemented packet filters
+-Implemented packet spoofing
+-Implemented Data Monitor

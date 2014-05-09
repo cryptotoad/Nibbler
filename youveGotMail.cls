@@ -17,11 +17,11 @@ Attribute VB_Exposed = False
 'wait for the recieving socket to connect before sending traffic
 'All functions return true if successful, false otherwise
 
-Public packetsCount As Integer ' the number of packets we're holding
+Private packetsCount As Integer ' the number of packets we're holding
 Dim holdingMessages() As String ' A string array containing our messages
 Public myData As String ' this is where we will fetch our output
 
-Public Function addBuffer() As Boolean
+Private Function addBuffer() As Boolean
     On Error GoTo retFalse
     ReDim Preserve holdingMessages(UBound(holdingMessages) + 1)
     addBuffer = True
@@ -31,7 +31,10 @@ retFalse:
     addBuffer = False
 End Function
 
-Public Function remBuffer() As Boolean
+Public Function getCount() As Integer
+    getCount = UBound(holdingMessages)
+End Function
+Private Function remBuffer() As Boolean
     On Error GoTo retFalse
     ReDim Preserve holdingMessages(UBound(holdingMessages) - 1)
     remBuffer = True
@@ -39,14 +42,13 @@ Public Function remBuffer() As Boolean
     
 retFalse:
     remBuffer = False
-    
 End Function
 
 Public Function pushMessage() As Boolean
     If addBuffer Then
         holdingMessages(UBound(holdingMessages)) = myData
     Else
-        Debug.Print "Error increasing buffer length!"
+        Debug.Print "Error increasing index!"
     End If
 End Function
 
@@ -55,7 +57,9 @@ Public Function popMessage() As Boolean
     
     strMessage = holdingMessages(UBound(holdingMessages))
     
-    remBuffer
+    If Not remBuffer Then
+        Debug.Print "Error removing index! Most likely out of messages, best to handle this as if that's the case."
+    End If
     
     myData = strMessage
 End Function
