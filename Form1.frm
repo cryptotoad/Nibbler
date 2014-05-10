@@ -4,8 +4,8 @@ Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form Form1 
    Caption         =   "Nibbler 0.2a"
    ClientHeight    =   11445
-   ClientLeft      =   120
-   ClientTop       =   450
+   ClientLeft      =   225
+   ClientTop       =   855
    ClientWidth     =   11640
    LinkTopic       =   "Form1"
    ScaleHeight     =   11445
@@ -333,6 +333,12 @@ Begin VB.Form Form1
       Top             =   11040
       Width           =   4095
    End
+   Begin VB.Menu mFile 
+      Caption         =   "File"
+   End
+   Begin VB.Menu mAbout 
+      Caption         =   "About"
+   End
 End
 Attribute VB_Name = "Form1"
 Attribute VB_GlobalNameSpace = False
@@ -364,9 +370,11 @@ End Sub
 
 
 Private Sub Command2_Click()
-    Form1.iSpeak.SendData HexToString(hexbox.Text)
-    text1.Text = text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
-    text2.Text = text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
+    If iSpeak.State = sckConnected Then
+        Form1.iSpeak.SendData HexToString(hexbox.Text)
+        text1.Text = text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
+        text2.Text = text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
+    End If
 End Sub
 
 Private Sub Command5_Click()
@@ -390,9 +398,11 @@ Private Sub Command4_Click()
 End Sub
 
 Private Sub Command6_Click()
-    Form1.iListen.SendData HexToString(hexbox.Text)
-    text1.Text = text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
-    text2.Text = text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
+    If iListen.State = sckConnected Then
+        Form1.iListen.SendData HexToString(hexbox.Text)
+        text1.Text = text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
+        text2.Text = text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
+    End If
 End Sub
 
 
@@ -631,6 +641,10 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
     
     
     
+End Sub
+
+Private Sub mAbout_Click()
+    frmAbout.Show
 End Sub
 
 Private Sub Timer1_Timer()
