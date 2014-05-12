@@ -375,6 +375,8 @@ Public outboundPhone As youveGotMail
 
 
 
+
+
 Private Sub Command1_Click()
 
 
@@ -470,6 +472,9 @@ Debug.Print vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine
     Set outboundPhone = New youveGotMail
     inboundPhone.clearAll
     outboundPhone.clearAll
+    
+
+    
     
 End Sub
 
