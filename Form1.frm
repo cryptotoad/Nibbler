@@ -59,7 +59,6 @@ Begin VB.Form frmMain
          _ExtentX        =   9551
          _ExtentY        =   8493
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":15371
       End
@@ -72,7 +71,6 @@ Begin VB.Form frmMain
          _ExtentX        =   9551
          _ExtentY        =   8493
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":153F3
       End
@@ -247,6 +245,7 @@ Begin VB.Form frmMain
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":15475
       End
@@ -259,6 +258,7 @@ Begin VB.Form frmMain
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":154F7
       End
@@ -340,6 +340,7 @@ Begin VB.Form frmMain
       Caption         =   "File"
       Begin VB.Menu mnuExploit 
          Caption         =   "Craft Exploit"
+         Enabled         =   0   'False
       End
       Begin VB.Menu mnuOptions 
          Caption         =   "Options"

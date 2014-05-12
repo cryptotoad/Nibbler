@@ -22,3 +22,6 @@ Private Sub Class_Initialize()
     Debug.Print "New exploit initialized!"
 End Sub
 
+Public Function craftSploitCode()
+    
+End Function
