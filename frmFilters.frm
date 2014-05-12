@@ -5,6 +5,7 @@ Begin VB.Form frmFilters
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   7905
+   Icon            =   "frmFilters.frx":0000
    LinkTopic       =   "Form3"
    ScaleHeight     =   5925
    ScaleWidth      =   7905

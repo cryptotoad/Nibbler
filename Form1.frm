@@ -8,6 +8,7 @@ Begin VB.Form frmMain
    ClientLeft      =   150
    ClientTop       =   780
    ClientWidth     =   11640
+   Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   10365
@@ -58,8 +59,9 @@ Begin VB.Form frmMain
          _ExtentX        =   9551
          _ExtentY        =   8493
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
-         TextRTF         =   $"Form1.frx":0000
+         TextRTF         =   $"Form1.frx":15371
       End
       Begin RichTextLib.RichTextBox text2 
          Height          =   4815
@@ -70,8 +72,9 @@ Begin VB.Form frmMain
          _ExtentX        =   9551
          _ExtentY        =   8493
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
-         TextRTF         =   $"Form1.frx":0082
+         TextRTF         =   $"Form1.frx":153F3
       End
       Begin VB.Label Label9 
          Alignment       =   2  'Center
@@ -244,9 +247,8 @@ Begin VB.Form frmMain
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
-         TextRTF         =   $"Form1.frx":0104
+         TextRTF         =   $"Form1.frx":15475
       End
       Begin RichTextLib.RichTextBox hexbox 
          Height          =   855
@@ -257,9 +259,8 @@ Begin VB.Form frmMain
          _ExtentX        =   13361
          _ExtentY        =   1508
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
-         TextRTF         =   $"Form1.frx":0186
+         TextRTF         =   $"Form1.frx":154F7
       End
       Begin VB.Label Label6 
          Caption         =   "ASCII Rendering"

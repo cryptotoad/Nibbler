@@ -1,7 +1,9 @@
-frmMain = 587, 140, 1358, 605, Z, 50, 50, 821, 515, C
-modFunctions = 75, 75, 846, 540, 
-clsPacketFilter = 125, 125, 896, 590, 
-frmFilters = 0, 0, 0, 0, C, 225, 225, 652, 687, C
-youveGotMail = -32, 6, 1220, 669, 
-frmAbout = 200, 200, 627, 655, , 175, 175, 602, 637, C
-frmOptions = 50, 50, 477, 505, , 25, 25, 452, 480, C
+frmMain = 587, 140, 1358, 605, C, 50, 50, 821, 515, C
+modFunctions = 75, 75, 846, 540, C
+clsPacketFilter = 125, 125, 896, 590, C
+frmFilters = 0, 0, 0, 0, C, 321, 242, 748, 704, C
+youveGotMail = -32, 6, 1220, 669, C
+frmAbout = 200, 200, 627, 655, C, 175, 175, 602, 637, C
+frmOptions = 50, 50, 477, 505, C, 25, 25, 452, 480, C
+frmSploitzzz = 0, 0, 0, 0, C, 175, 175, 793, 769, C
+clsSploit = 200, 200, 818, 794, C

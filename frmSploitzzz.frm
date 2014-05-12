@@ -5,6 +5,7 @@ Begin VB.Form frmSploitzzz
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   4110
+   Icon            =   "frmSploitzzz.frx":0000
    LinkTopic       =   "Form1"
    ScaleHeight     =   4470
    ScaleWidth      =   4110
@@ -38,7 +39,7 @@ Begin VB.Form frmSploitzzz
       Height          =   255
       Left            =   2520
       TabIndex        =   7
-      ToolTipText     =   $"frmSploitzzz.frx":0000
+      ToolTipText     =   $"frmSploitzzz.frx":15371
       Top             =   1200
       Width           =   1215
    End

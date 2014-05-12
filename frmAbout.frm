@@ -5,6 +5,7 @@ Begin VB.Form frmAbout
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   4560
+   Icon            =   "frmAbout.frx":0000
    LinkTopic       =   "Form2"
    ScaleHeight     =   4755
    ScaleWidth      =   4560
@@ -88,7 +89,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label Label2 
       Alignment       =   2  'Center
-      Caption         =   $"frmAbout.frx":0000
+      Caption         =   $"frmAbout.frx":15371
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   12
