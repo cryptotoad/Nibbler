@@ -4,14 +4,14 @@ Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Nibbler 0.21a"
-   ClientHeight    =   10365
+   ClientHeight    =   10170
    ClientLeft      =   150
    ClientTop       =   780
    ClientWidth     =   11640
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   10365
+   ScaleHeight     =   10170
    ScaleWidth      =   11640
    StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
@@ -284,7 +284,7 @@ Begin VB.Form frmMain
       Height          =   375
       Left            =   9000
       TabIndex        =   30
-      Top             =   9960
+      Top             =   9840
       Width           =   2535
    End
    Begin VB.Shape Shape1 
@@ -293,7 +293,7 @@ Begin VB.Form frmMain
       FillColor       =   &H00FFFFFF&
       Height          =   255
       Left            =   240
-      Top             =   9960
+      Top             =   9840
       Width           =   255
    End
    Begin VB.Label Label4 
@@ -333,14 +333,13 @@ Begin VB.Form frmMain
       Height          =   255
       Left            =   720
       TabIndex        =   0
-      Top             =   9960
+      Top             =   9840
       Width           =   4095
    End
    Begin VB.Menu mFile 
       Caption         =   "File"
       Begin VB.Menu mnuExploit 
          Caption         =   "Craft Exploit"
-         Enabled         =   0   'False
       End
       Begin VB.Menu mnuOptions 
          Caption         =   "Options"
@@ -395,7 +394,7 @@ End Sub
 Private Sub Command2_Click()
     If iSpeak.State = sckConnected Then
         iSpeak.SendData HexToString(hexbox.Text)
-        Text1.Text = Text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
+        text1.Text = text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
         Text2.Text = Text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
     End If
 End Sub
@@ -423,7 +422,7 @@ End Sub
 Private Sub Command6_Click()
     If iListen.State = sckConnected Then
         iListen.SendData HexToString(hexbox.Text)
-        Text1.Text = Text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
+        text1.Text = text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
         Text2.Text = Text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
     End If
 End Sub
@@ -441,7 +440,7 @@ Private Sub Command8_Click()
 End Sub
 
 Private Sub Command9_Click()
-    Text1.Text = ""
+    text1.Text = ""
 End Sub
 
 ''''''''''''''''''''''''''''''
@@ -554,13 +553,13 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
     
     If iSpeak.State = sckConnected Then
     
-        Text1.Text = Text1.Text & vbNewLine & "[BOT] " & botStream
+        text1.Text = text1.Text & vbNewLine & "[BOT] " & botStream
     
         Text2.Text = Text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
     
     Else
     
-        Text1.Text = Text1.Text & vbNewLine & "[HOLD][BOT] " & botStream
+        text1.Text = text1.Text & vbNewLine & "[HOLD][BOT] " & botStream
     
         Text2.Text = Text2.Text & vbNewLine & "[HOLD][BOT] " & StringToHex(botStream)
 
@@ -639,13 +638,13 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
     
     If iListen.State = sckConnected Then
     
-        Text1.Text = Text1.Text & vbNewLine & "[SERV] " & clientStream
+        text1.Text = text1.Text & vbNewLine & "[SERV] " & clientStream
         
         Text2.Text = Text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
     
     Else
     
-        Text1.Text = Text1.Text & vbNewLine & "[HOLD][SERV] " & clientStream
+        text1.Text = text1.Text & vbNewLine & "[HOLD][SERV] " & clientStream
         
         Text2.Text = Text2.Text & vbNewLine & "[HOLD][SERV] " & StringToHex(clientStream)
         
@@ -687,7 +686,7 @@ End Sub
 
 Private Sub Timer1_Timer()
     If iSpeak.State = sckConnected And iListen.State = sckConnected Then
-        Shape1.BackColor = &HFF&
+        Shape1.BackColor = &HFF00&
     ElseIf iSpeak.State <> sckConnected And iListen.State <> sckConnected Then
         Shape1.BackColor = &HFF&
     Else
