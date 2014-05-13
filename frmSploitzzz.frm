@@ -1,15 +1,31 @@
 VERSION 5.00
 Begin VB.Form frmSploitzzz 
    Caption         =   "Craft Exploit"
-   ClientHeight    =   5040
+   ClientHeight    =   5835
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   4110
    Icon            =   "frmSploitzzz.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5040
+   ScaleHeight     =   5835
    ScaleWidth      =   4110
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox txtPrepend 
+      Height          =   285
+      Left            =   1560
+      TabIndex        =   16
+      Text            =   "0F2E445723"
+      Top             =   2640
+      Width           =   2415
+   End
+   Begin VB.CheckBox chkPrepend 
+      Caption         =   "Prepend Bytes"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   15
+      Top             =   2640
+      Width           =   1455
+   End
    Begin VB.TextBox txtNops 
       Height          =   285
       Left            =   2520
@@ -24,7 +40,7 @@ Begin VB.Form frmSploitzzz
       Left            =   120
       TabIndex        =   13
       Top             =   2280
-      Width           =   1815
+      Width           =   2055
    End
    Begin VB.CommandButton Command3 
       Caption         =   "Add"
@@ -47,16 +63,16 @@ Begin VB.Form frmSploitzzz
       Height          =   375
       Left            =   120
       TabIndex        =   9
-      Top             =   4560
+      Top             =   5400
       Width           =   3855
    End
    Begin VB.TextBox txtPacket 
-      Height          =   1575
+      Height          =   2055
       Left            =   120
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   8
-      Top             =   3000
+      Top             =   3360
       Width           =   3855
    End
    Begin VB.CheckBox chkEndian 
@@ -72,7 +88,7 @@ Begin VB.Form frmSploitzzz
       Height          =   285
       Left            =   1440
       TabIndex        =   6
-      Text            =   "008043f2"
+      Text            =   "41424142"
       Top             =   1800
       Width           =   975
    End
@@ -81,7 +97,7 @@ Begin VB.Form frmSploitzzz
       Height          =   375
       Left            =   120
       TabIndex        =   4
-      Top             =   2640
+      Top             =   3000
       Width           =   3855
    End
    Begin VB.ComboBox cmbShellcode 
@@ -147,7 +163,11 @@ Private Sub Command1_Click()
     formSploit.expName = "Nibbler Sample Exploit"
     formSploit.CVEID = "1337"
     
-    formSploit.prependBytes = False
+    formSploit.prepend = chkPrepend.Value
+    
+    If chkPrepend.Value = True Then
+        formSploit.prependBytes = txtPrepend.Text
+    End If
     
     If chkNops.Value = True Then
         formSploit.useNops = True
@@ -158,13 +178,14 @@ Private Sub Command1_Click()
     
     If chkEndian.Value = False Then
         formSploit.retOffset = txtRet.Text
+        MsgBox formSploit.retOffset
+        MsgBox HexToStr(formSploit.retOffset)
     Else
         formSploit.retOffset = Right(txtRet.Text, 2)
-        formSploit.retOffset = formSploit.retOffset & Right(Left(txtRet.Text, 6), 2)
-        formSploit.retOffset = formSploit.retOffset & Right(Left(txtRet.Text, 4), 2)
-        formSploit.retOffset = formSploit.retOffset & Right(Left(txtRet.Text, 2), 2)
-        'MsgBox formSploit.retOffset
-        
+        formSploit.retOffset = formSploit.retOffset & Left(Right(txtRet.Text, 4), 2)
+        formSploit.retOffset = formSploit.retOffset & Left(Right(txtRet.Text, 6), 2)
+        formSploit.retOffset = formSploit.retOffset & Left(Right(txtRet.Text, 8), 2)
+        MsgBox formSploit.retOffset
     End If
     
     

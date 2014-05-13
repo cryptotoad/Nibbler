@@ -52,7 +52,18 @@ Public Function HexToString(ByVal HexToStr As String) As String
     
     HexToString = strReturn
 End Function
-
+    Public Function HexToStr(ByVal Data As String) As String
+    Dim Buffer As String
+     
+        If Len(Data) Mod 2 <> 0 Then
+            HexToStr = vbNullString
+        Else
+            For I = 1 To Len(Data) - 1 Step 2
+                Buffer = Buffer & Chr("&H" & Mid(Data, I, 2))
+            Next I
+            HexToStr = Buffer
+        End If
+    End Function
 
 Public Function StringToHex(ByVal StrToHex As String) As String
     Dim strTemp   As String
