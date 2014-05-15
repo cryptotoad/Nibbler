@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form frmAbout 
-   Caption         =   "About Nibbler"
+   Caption         =   "It doesn't eat... It nibbles."
    ClientHeight    =   4755
    ClientLeft      =   120
    ClientTop       =   450

@@ -3,6 +3,10 @@ Nibbler
 
 Packet editing and encryption stripping proxy server
 
+Questions? Suggestions?
+IRC.HARDCHATS.XXX #Nibbler
+
+
 USAGE:
 
 Malware traffic
