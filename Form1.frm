@@ -3,15 +3,15 @@ Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "Nibbler 0.25a"
-   ClientHeight    =   10170
+   Caption         =   "Nibbler 0.3a - irc.hardchats.xxx #Nibbler"
+   ClientHeight    =   10215
    ClientLeft      =   150
    ClientTop       =   780
    ClientWidth     =   11640
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   10170
+   ScaleHeight     =   10215
    ScaleWidth      =   11640
    StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
@@ -24,7 +24,7 @@ Begin VB.Form frmMain
       Height          =   315
       Left            =   240
       TabIndex        =   33
-      Top             =   9120
+      Top             =   9240
       Width           =   5415
    End
    Begin VB.CommandButton Command7 
@@ -37,40 +37,42 @@ Begin VB.Form frmMain
    End
    Begin VB.Frame Frame2 
       Caption         =   "Data Monitor Lizard"
-      Height          =   6135
+      Height          =   4815
       Left            =   120
       TabIndex        =   25
-      Top             =   3600
+      Top             =   4920
       Width           =   11415
       Begin VB.CommandButton Command8 
          Caption         =   "Clear"
          Height          =   315
          Left            =   5760
          TabIndex        =   32
-         Top             =   5520
+         Top             =   4320
          Width           =   5415
       End
       Begin RichTextLib.RichTextBox text1 
-         Height          =   4815
+         Height          =   3855
          Left            =   120
          TabIndex        =   26
-         Top             =   600
+         Top             =   480
          Width           =   5415
          _ExtentX        =   9551
-         _ExtentY        =   8493
+         _ExtentY        =   6800
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":15371
       End
       Begin RichTextLib.RichTextBox text2 
-         Height          =   4815
+         Height          =   3855
          Left            =   5760
          TabIndex        =   27
-         Top             =   600
+         Top             =   480
          Width           =   5415
          _ExtentX        =   9551
-         _ExtentY        =   8493
+         _ExtentY        =   6800
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":153F3
       End
@@ -78,9 +80,9 @@ Begin VB.Form frmMain
          Alignment       =   2  'Center
          Caption         =   "Unicode"
          Height          =   255
-         Left            =   720
+         Left            =   840
          TabIndex        =   29
-         Top             =   360
+         Top             =   240
          Width           =   3615
       End
       Begin VB.Label Label8 
@@ -89,7 +91,7 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   6840
          TabIndex        =   28
-         Top             =   360
+         Top             =   240
          Width           =   3615
       End
    End
@@ -98,7 +100,7 @@ Begin VB.Form frmMain
       Height          =   255
       Left            =   120
       TabIndex        =   15
-      Top             =   3240
+      Top             =   4560
       Width           =   3375
    End
    Begin VB.OptionButton Option4 
@@ -106,7 +108,7 @@ Begin VB.Form frmMain
       Height          =   195
       Left            =   2640
       TabIndex        =   14
-      Top             =   3000
+      Top             =   4200
       Value           =   -1  'True
       Width           =   735
    End
@@ -116,7 +118,7 @@ Begin VB.Form frmMain
       Height          =   195
       Left            =   1800
       TabIndex        =   13
-      Top             =   3000
+      Top             =   4200
       Width           =   735
    End
    Begin VB.OptionButton Option2 
@@ -125,7 +127,7 @@ Begin VB.Form frmMain
       Height          =   195
       Left            =   960
       TabIndex        =   12
-      Top             =   3000
+      Top             =   4200
       Width           =   735
    End
    Begin VB.OptionButton optRC4 
@@ -133,11 +135,11 @@ Begin VB.Form frmMain
       Height          =   195
       Left            =   120
       TabIndex        =   11
-      Top             =   3000
+      Top             =   4200
       Width           =   735
    End
    Begin VB.TextBox tEncKey 
-      Height          =   1095
+      Height          =   2295
       Left            =   120
       TabIndex        =   9
       Top             =   1800
@@ -160,8 +162,8 @@ Begin VB.Form frmMain
       Width           =   1095
    End
    Begin MSWinsockLib.Winsock iSpeak 
-      Left            =   480
-      Top             =   3480
+      Left            =   11280
+      Top             =   9600
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -191,15 +193,15 @@ Begin VB.Form frmMain
       Width           =   1215
    End
    Begin MSWinsockLib.Winsock iListen 
-      Left            =   0
-      Top             =   3480
+      Left            =   11280
+      Top             =   9240
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
    End
    Begin VB.Frame Frame1 
       Caption         =   "Packet Forge"
-      Height          =   3615
+      Height          =   4815
       Left            =   3600
       TabIndex        =   16
       Top             =   0
@@ -209,7 +211,7 @@ Begin VB.Form frmMain
          Height          =   375
          Left            =   120
          TabIndex        =   20
-         Top             =   2880
+         Top             =   4320
          Width           =   3495
       End
       Begin VB.CommandButton Command2 
@@ -217,7 +219,7 @@ Begin VB.Form frmMain
          Height          =   375
          Left            =   4200
          TabIndex        =   19
-         Top             =   2880
+         Top             =   4320
          Width           =   3495
       End
       Begin VB.CommandButton Command3 
@@ -225,7 +227,7 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   3360
          TabIndex        =   18
-         Top             =   1560
+         Top             =   2400
          Width           =   2055
       End
       Begin VB.CommandButton Command4 
@@ -233,32 +235,30 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   5640
          TabIndex        =   17
-         Top             =   1560
+         Top             =   2400
          Width           =   2055
       End
       Begin RichTextLib.RichTextBox asciibox 
-         Height          =   855
+         Height          =   1575
          Left            =   120
          TabIndex        =   21
          Top             =   600
          Width           =   7575
          _ExtentX        =   13361
-         _ExtentY        =   1508
+         _ExtentY        =   2778
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":15475
       End
       Begin RichTextLib.RichTextBox hexbox 
-         Height          =   855
+         Height          =   1455
          Left            =   120
          TabIndex        =   22
-         Top             =   1920
+         Top             =   2760
          Width           =   7575
          _ExtentX        =   13361
-         _ExtentY        =   1508
+         _ExtentY        =   2566
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   2
          TextRTF         =   $"Form1.frx":154F7
       End
@@ -275,7 +275,7 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   240
          TabIndex        =   23
-         Top             =   1560
+         Top             =   2400
          Width           =   2415
       End
    End
@@ -338,6 +338,10 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mFile 
       Caption         =   "File"
+      Begin VB.Menu mFilters 
+         Caption         =   "Configure Packet Filters"
+         Enabled         =   0   'False
+      End
       Begin VB.Menu mnuExploit 
          Caption         =   "Craft Exploit"
       End
@@ -395,7 +399,7 @@ Private Sub Command2_Click()
     If iSpeak.State = sckConnected Then
         iSpeak.SendData HexToString(hexbox.Text)
         text1.Text = text1.Text & vbNewLine & "[SPOOF][BOT] " & HexToString(hexbox.Text)
-        Text2.Text = Text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
+        text2.Text = text2.Text & vbNewLine & "[SPOOF][BOT] " & hexbox.Text
     End If
 End Sub
 
@@ -423,7 +427,7 @@ Private Sub Command6_Click()
     If iListen.State = sckConnected Then
         iListen.SendData HexToString(hexbox.Text)
         text1.Text = text1.Text & vbNewLine & "[SPOOF][SERV] " & HexToString(hexbox.Text)
-        Text2.Text = Text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
+        text2.Text = text2.Text & vbNewLine & "[SPOOF][SERV] " & hexbox.Text
     End If
 End Sub
 
@@ -436,7 +440,7 @@ Private Sub Command7_Click()
 End Sub
 
 Private Sub Command8_Click()
-    Text2.Text = ""
+    text2.Text = ""
 End Sub
 
 Private Sub Command9_Click()
@@ -446,7 +450,8 @@ End Sub
 ''''''''''''''''''''''''''''''
 
 Private Sub Form_Load()
-    
+setupShellcodes
+
 Debug.Print vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine
     'Set up packet filtering
     Set outboundFilter = New clsPacketFilter
@@ -555,13 +560,13 @@ Private Sub iListen_DataArrival(ByVal bytesTotal As Long)
     
         text1.Text = text1.Text & vbNewLine & "[BOT] " & botStream
     
-        Text2.Text = Text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
+        text2.Text = text2.Text & vbNewLine & "[BOT] " & StringToHex(botStream)
     
     Else
     
         text1.Text = text1.Text & vbNewLine & "[HOLD][BOT] " & botStream
     
-        Text2.Text = Text2.Text & vbNewLine & "[HOLD][BOT] " & StringToHex(botStream)
+        text2.Text = text2.Text & vbNewLine & "[HOLD][BOT] " & StringToHex(botStream)
 
     End If
     
@@ -640,13 +645,13 @@ Private Sub iSpeak_DataArrival(ByVal bytesTotal As Long)
     
         text1.Text = text1.Text & vbNewLine & "[SERV] " & clientStream
         
-        Text2.Text = Text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
+        text2.Text = text2.Text & vbNewLine & "[SERV] " & StringToHex(clientStream)
     
     Else
     
         text1.Text = text1.Text & vbNewLine & "[HOLD][SERV] " & clientStream
         
-        Text2.Text = Text2.Text & vbNewLine & "[HOLD][SERV] " & StringToHex(clientStream)
+        text2.Text = text2.Text & vbNewLine & "[HOLD][SERV] " & StringToHex(clientStream)
         
     End If
     
@@ -674,6 +679,10 @@ End Sub
 
 Private Sub mExit_Click()
     End
+End Sub
+
+Private Sub mFilters_Click()
+    frmFilters.Show
 End Sub
 
 Private Sub mnuExploit_Click()

