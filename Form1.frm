@@ -451,7 +451,7 @@ End Sub
 
 Private Sub Form_Load()
     setupShellcodes
-    
+
     Debug.Print vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine
     
     'Set up packet filtering
@@ -460,9 +460,17 @@ Private Sub Form_Load()
     outboundFilter.encoding = 2 ' turn on hex
     outboundFilter.newData = StringToHex(StrConv("Skidszz", vbUnicode))
     outboundFilter.toFilter = StringToHex(StrConv("AntiVir", vbUnicode))
-    outboundFilter.isActive = True
+    outboundFilter.isActive = False
+    'WPE style packet filters :P
     
     
+    Set inboundFilter = New clsPacketFilter
+    
+    inboundFilter.encoding = 2 ' turn on hex
+    inboundFilter.newData = "90" ' let's be crazy and filter nulls to nops for shits n gigs
+    inboundFilter.toFilter = "00"
+    inboundFilter.isActive = False
+
 
     'Filters done, let's set up hold the phone
     Set inboundPhone = New youveGotMail
