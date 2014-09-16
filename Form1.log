@@ -1,0 +1,24 @@
+Line 53: Class RichTextLib.RichTextBox of control text1 was not a loaded control class.
+Line 66: Class RichTextLib.RichTextBox of control text2 was not a loaded control class.
+Line 241: Class RichTextLib.RichTextBox of control asciibox was not a loaded control class.
+Line 253: Class RichTextLib.RichTextBox of control hexbox was not a loaded control class.
+Line 59: The property name _ExtentX in text1 is invalid.
+Line 60: The property name _ExtentY in text1 is invalid.
+Line 61: The property name _Version in text1 is invalid.
+Line 63: The property name ScrollBars in text1 is invalid.
+Line 64: The property name TextRTF in text1 is invalid.
+Line 72: The property name _ExtentX in text2 is invalid.
+Line 73: The property name _ExtentY in text2 is invalid.
+Line 74: The property name _Version in text2 is invalid.
+Line 76: The property name ScrollBars in text2 is invalid.
+Line 77: The property name TextRTF in text2 is invalid.
+Line 247: The property name _ExtentX in asciibox is invalid.
+Line 248: The property name _ExtentY in asciibox is invalid.
+Line 249: The property name _Version in asciibox is invalid.
+Line 250: The property name ScrollBars in asciibox is invalid.
+Line 251: The property name TextRTF in asciibox is invalid.
+Line 259: The property name _ExtentX in hexbox is invalid.
+Line 260: The property name _ExtentY in hexbox is invalid.
+Line 261: The property name _Version in hexbox is invalid.
+Line 262: The property name ScrollBars in hexbox is invalid.
+Line 263: The property name TextRTF in hexbox is invalid.

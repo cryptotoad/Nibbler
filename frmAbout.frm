@@ -1,18 +1,18 @@
 VERSION 5.00
 Begin VB.Form frmAbout 
    Caption         =   "It doesn't eat... It nibbles."
-   ClientHeight    =   4755
+   ClientHeight    =   4950
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   4560
    Icon            =   "frmAbout.frx":0000
    LinkTopic       =   "Form2"
-   ScaleHeight     =   4755
+   ScaleHeight     =   4950
    ScaleWidth      =   4560
    StartUpPosition =   3  'Windows Default
-   Begin VB.Label Label6 
+   Begin VB.Label Label7 
       Alignment       =   2  'Center
-      Caption         =   "Chat hard."
+      Caption         =   "Hplus: Cool dude."
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   12
@@ -22,9 +22,27 @@ Begin VB.Form frmAbout
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FF00FF&
       Height          =   315
       Left            =   120
+      TabIndex        =   6
+      Top             =   3960
+      Width           =   4320
+      WordWrap        =   -1  'True
+   End
+   Begin VB.Label Label6 
+      Alignment       =   2  'Center
+      Caption         =   "Support The Bagel"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   435
+      Left            =   240
       TabIndex        =   5
       Top             =   4440
       Width           =   4320
